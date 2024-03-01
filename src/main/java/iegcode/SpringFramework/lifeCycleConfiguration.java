@@ -14,7 +14,8 @@ public class lifeCycleConfiguration {
     }
 
 
-    @Bean(initMethod = "start", destroyMethod = "stop")
+//    @Bean(initMethod = "start", destroyMethod = "stop")
+    @Bean
     public Server server(){
         return new Server();
     }
