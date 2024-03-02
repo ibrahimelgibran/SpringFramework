@@ -1,8 +1,10 @@
 package iegcode.SpringFramework;
 
 import iegcode.SpringFramework.repository.CategoryRepository;
+import iegcode.SpringFramework.repository.CustomerRepository;
 import iegcode.SpringFramework.repository.ProductRepository;
 import iegcode.SpringFramework.service.CategoryService;
+import iegcode.SpringFramework.service.CustomerService;
 import iegcode.SpringFramework.service.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,5 +49,14 @@ public class ComponentTest {
         CategoryRepository categoryRepository = applicationContext.getBean(CategoryRepository.class);
 
         Assertions.assertSame(categoryRepository, categoryService.getCategoryRepository());
+    }
+
+    @Test // not in recommend
+    void testFieldDependencyInjection() {
+
+        CustomerService customerService = applicationContext.getBean(CustomerService.class);
+        CustomerRepository customerRepository = applicationContext.getBean(CustomerRepository.class);
+
+        Assertions.assertSame(customerRepository, customerService.getCustomerRepository());
     }
 }
