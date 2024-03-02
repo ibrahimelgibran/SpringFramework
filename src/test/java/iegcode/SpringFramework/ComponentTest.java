@@ -1,5 +1,6 @@
 package iegcode.SpringFramework;
 
+import iegcode.SpringFramework.data.MultiFoo;
 import iegcode.SpringFramework.repository.CategoryRepository;
 import iegcode.SpringFramework.repository.CustomerRepository;
 import iegcode.SpringFramework.repository.ProductRepository;
@@ -51,12 +52,22 @@ public class ComponentTest {
         Assertions.assertSame(categoryRepository, categoryService.getCategoryRepository());
     }
 
-    @Test // not in recommend
+    @Test
     void testFieldDependencyInjection() {
 
         CustomerService customerService = applicationContext.getBean(CustomerService.class);
-        CustomerRepository customerRepository = applicationContext.getBean(CustomerRepository.class);
+        CustomerRepository normalCustomerRepository = applicationContext.getBean("normalCustomerRepository", CustomerRepository.class);
+        CustomerRepository priemiumCustomerRepository = applicationContext.getBean("premiumCustomerRepository", CustomerRepository.class);
 
-        Assertions.assertSame(customerRepository, customerService.getCustomerRepository());
+        Assertions.assertSame(normalCustomerRepository, customerService.getNormalCustomerRepository());
+        Assertions.assertSame(priemiumCustomerRepository, customerService.getPremiumlCustomerRepository());
+    }
+
+    @Test
+    void testObjectProvider() {
+
+        MultiFoo multiFoo = applicationContext.getBean(MultiFoo.class);
+        Assertions.assertEquals(3, multiFoo.getFoos().size());
+
     }
 }
