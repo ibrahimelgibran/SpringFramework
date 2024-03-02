@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {
-       "iegcode.SpringFramework.service"
+       "iegcode.SpringFramework.service",
+       "iegcode.SpringFramework.repository"
 })
 public class ComponentConfiguration {
 }
