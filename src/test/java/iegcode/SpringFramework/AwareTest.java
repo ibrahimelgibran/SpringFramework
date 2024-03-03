@@ -32,7 +32,7 @@ public class AwareTest {
         AuthService authService = applicationContext.getBean(AuthService.class);
 
 
-        Assertions.assertEquals("iegcode.SpringFramework    .service.AuthService", authService.getBeanName());
+        Assertions.assertEquals("iegcode.SpringFramework.service.AuthService", authService.getBeanName());
         Assertions.assertNotNull(authService.getApplicationContext());
         Assertions.assertSame(applicationContext, authService.getApplicationContext());
     }
